@@ -1,3 +1,32 @@
 <h3>Trainer</h3>
 <p>Name: <%= @trainer.name if @trainer.name %></p>
 <p>Email: <%= @trainer.email if @trainer.email %></p>
+<% if @trainer.id == current_trainer.id %>
+	<p>Create a new pokemon </p>
+
+	<%= button_to "Create new Pokemon", new_path, :class => "button medium", :method => :get %>
+<% end %>
+
+<p> List of Pokemon </p>
+
+<% Pokemon.where(trainer_id: @trainer.id).each do |poke| %>
+    <% if poke.health <= 0 and current_trainer.id != @trainer.id %>
+		
+		<% else %>
+		<h1>
+		Name: <%= poke.name %>
+		</h1>
+		<h1>
+		Level: <%= poke.level%>
+		</h1>
+		<h1>
+		Health: <%= poke.health%>
+		</h1>
+		<%= image_tag("pokemon/#{poke.ndex}.png", alt: "pokemon") %> 
+		<% if poke.health > 0 %>
+			<%= button_to "Damage!", damage_path(id: poke.id), :class => "button medium", :method => :patch %>
+		<% end %>
+
+		<%= button_to "Heal!", heal_path(id: poke.id), :class => "button medium", :method => :patch %>
+	<% end %>
+<% end %> <%# for the for loop  %>
