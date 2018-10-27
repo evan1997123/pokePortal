@@ -14,7 +14,10 @@ Minion
 We pass into redirect_to the trainer_path with the specific id of our current_trainer. It needed the id of our current trainer.
 
 # Question 5: Explain how putting this line "flash[:error] = @pokemon.errors.full_messages.to_sentence" shows error messages on your form.
+It shows error messages on the form because it is the default for rendering any page. That way, when there's an error, it would just put it in there and we extract it to be put into a sentence.
 
 # Give us feedback on the project and decal below!
 
-# Extra credit: Link your Heroku deployed app
+https://github.com/evan1997123/pokePortal
+
+# Extra credit: Link your Heroku deployed apps
